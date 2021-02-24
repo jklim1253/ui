@@ -1,0 +1,10 @@
+// first ICON will be application icon
+aaaaaa ICON "res/ui.ico"
+
+ui ICON "res/ui.ico"
+
+#define wxUSE_NO_MANIFEST 0
+
+#include "wx/msw/wx.rc"
+
+LOGO RCDATA "res/ui.png" 

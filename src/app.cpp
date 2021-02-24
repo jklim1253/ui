@@ -292,12 +292,15 @@ public:
 
 } // namespace Frame
 
+// wxGetApp()
 IMPLEMENT_APP(App::Main);
 namespace App
 {
 
 bool Main::OnInit()
 {
+  wxInitAllImageHandlers();
+
   Frame::Main* frame = new Frame::Main("UI",
                                        wxPoint{100, 100},
                                        wxSize{800, 600},

@@ -5,6 +5,9 @@ set(FILE_SOURCES
 )
 set(FILE_HEADERS
 )
+set(FILE_RESOURCES
+  "app.rc"
+)
 
 # for window application, not console
 add_link_options("/SUBSYSTEM:WINDOWS")
@@ -15,4 +18,5 @@ add_compile_options(-DWXUSINGDLL)
 add_executable(${PROJECT_NAME}
   ${FILE_SOURCES}
   ${FILE_HEADERS}
+  ${FILE_RESOURCES}
 )
