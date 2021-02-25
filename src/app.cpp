@@ -1,4 +1,6 @@
 #include <wx/wx.h>
+#include "control/colorbutton.hpp"
+#include "util/util.hpp"
 
 namespace App
 {
@@ -237,6 +239,32 @@ public:
     : wxPanel(parent, id, wxDefaultPosition, size)
   {
     SetBackgroundColour(Theme::basic::color[Theme::sidebar]);
+
+    ui::ColorButton* button = new ui::ColorButton(this, wxID_ANY, wxT("Hello"), Theme::basic::color[Theme::sidebar], wxDefaultPosition, wxSize{-1, 50});
+    button->SetForegroundColour("#717D88");
+    button->SetHoverBackgroundColour(wxColour(Theme::basic::color[Theme::sidebar]) - 10);
+    button->SetHoverForegroundColour("#FFFFFF");
+    ui::ColorButton* button2 = new ui::ColorButton(this, wxID_ANY, wxT("World"), Theme::basic::color[Theme::sidebar], wxDefaultPosition, wxSize{-1, 50});
+    button2->SetForegroundColour("#717D88");
+    button2->SetHoverBackgroundColour(wxColour(Theme::basic::color[Theme::sidebar]) - 10);
+    button2->SetHoverForegroundColour("#FFFFFF");
+
+    wxBoxSizer* sizer = new wxBoxSizer(wxVERTICAL);
+    {
+      sizer->Add(button, 0, wxEXPAND | wxALL, 1);
+      sizer->Add(button2, 0, wxEXPAND | wxALL, 1);
+    }
+
+    SetSizer(sizer);
+    Layout();
+
+    Bind(wxEVT_BUTTON, &Sidebar::OnButton, this, button->GetId());
+    Bind(wxEVT_BUTTON, &Sidebar::OnButton, this, button2->GetId());
+  }
+  void OnButton(wxCommandEvent& e)
+  {
+    wxString msg = wxString::Format(wxT("%s is clicked"), ((wxWindow*)e.GetEventObject())->GetLabel());
+    wxMessageBox(msg, wxT("Check"));
   }
 };
 

@@ -15,8 +15,13 @@ add_link_options("/SUBSYSTEM:WINDOWS")
 # using wxWidgets dynamic library
 add_compile_options(-DWXUSINGDLL)
 
-add_executable(${PROJECT_NAME}
+add_subdirectory(util)
+add_subdirectory(control)
+
+add_executable(${CMAKE_PROJECT_NAME}
   ${FILE_SOURCES}
   ${FILE_HEADERS}
   ${FILE_RESOURCES}
 )
+target_link_libraries(${CMAKE_PROJECT_NAME} util)
+target_link_libraries(${CMAKE_PROJECT_NAME} control)
